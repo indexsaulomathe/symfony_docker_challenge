@@ -1,13 +1,14 @@
-# Utilize a imagem PHP com a versão FPM
-FROM php:8.1-fpm-alpine
+# Utilize a imagem oficial do PHP com a versão FPM para PHP 8.2
+FROM php:8.2-fpm
 
 # Instalar dependências do sistema para extensões PHP e utilitários necessários
-RUN apk update && apk add --no-cache \
-    postgresql-dev \
+# Nota: A instrução 'apk' é usada em imagens baseadas no Alpine. Para imagens Debian/Ubuntu, use 'apt-get'.
+RUN apt-get update && apt-get install -y \
+    libpq-dev \
     git \
     unzip \
-    && rm -rf /var/lib/apt/lists/* \
-    && docker-php-ext-install pdo pdo_pgsql
+    && apt-get clean && rm -rf /var/lib/apt/lists/* \
+    && docker-php-ext-install pdo_pgsql
 
 # Definir o diretório de trabalho no container
 WORKDIR /var/www/symfony
@@ -27,8 +28,11 @@ RUN composer install --no-scripts --no-dev --prefer-dist --optimize-autoloader
 COPY . .
 
 # Configurar permissões do diretório
+# Isso é necessário para que o servidor web possa escrever nos diretórios 'var' e 'vendor', por exemplo
 RUN chown -R www-data:www-data /var/www/symfony
 
-# Expõe a porta 9000 e inicia o servidor PHP-FPM
+# Expõe a porta 9000 para o servidor PHP-FPM
 EXPOSE 9000
+
+# Comando para iniciar o servidor PHP-FPM
 CMD ["php-fpm"]
