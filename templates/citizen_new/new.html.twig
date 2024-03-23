@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cadastro de Novo Cidadão{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Cadastro de Novo Cidadão</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.name) }}
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Resultados da Pesquisa{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Resultados da Pesquisa</h1>
+
+    {% if citizens|length > 0 %}
+        <ul>
+            {% for citizen in citizens %}
+                <li>{{ citizen.name }} - NIS: {{ citizen.nis }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nenhum cidadão encontrado.</p>
+    {% endif %}
+
+    <a href="{{ path('app_citizen') }}">Voltar à pesquisa</a>
+</div>
+{% endblock %}
