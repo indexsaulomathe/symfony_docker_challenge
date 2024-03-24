@@ -1,60 +1,50 @@
 <?php
 
-
 namespace App\Entity;
 
+use App\Repository\CitizenRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity
- * @ORM\Table(name="citizens")
- */
+#[ORM\Entity(repositoryClass: CitizenRepository::class)]
 class Citizen
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
     private ?int $id = null;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
-     */
-    private string $name;
+    #[ORM\Column(length: 255)]
+    private ?string $name = null;
 
-    /**
-     * @ORM\Column(type="string", length=11, unique=true)
-     */
-    private string $nis;
+    #[ORM\Column(length: 11, unique: true)]
+    private ?string $nis = null;
 
-    // Getters and setters
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(string $name): static
     {
         $this->name = $name;
+
         return $this;
     }
 
-    public function getNis(): string
+    public function getNis(): ?string
     {
         return $this->nis;
     }
 
-    public function setNis(string $nis): self
+    public function setNis(string $nis): static
     {
         $this->nis = $nis;
+
         return $this;
     }
 }

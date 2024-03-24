@@ -20,12 +20,12 @@ services:
       - php
 
   database:
-    image: postgres:${POSTGRES_VERSION:-16}-alpine
+    image: postgres:16-alpine
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-symfony_db}
+      POSTGRES_DB: symfony_db
       # You should definitely change the password in production
-      POSTGRES_USER: ${POSTGRES_USER:-symfony_user}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-secret}
+      POSTGRES_USER: symfony_user
+      POSTGRES_PASSWORD: secret
     ports:
       - "5432:5432"
     volumes:
