@@ -82,3 +82,18 @@ utilize
  docker-compose exec php bin/console <comando>
 ```
 
+
+
+## Para roda os testes deve ser criado o banco de test em sqlite
+
+php bin/console doctrine:database:create --env=test
+php bin/console doctrine:schema:create --env=test
+php bin/console doctrine:migrations:migrate --env=test
+
+
+## Rodar os testes
+
+./vendor/bin/phpunit
+
+
+
