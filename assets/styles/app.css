@@ -1,3 +1,74 @@
 body {
-    background-color: skyblue;
+  background-color: skyblue;
+}
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.card {
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+.form-group {
+  margin-bottom: 25px;
+  text-align: center;
+}
+input[type="text"] {
+  width: calc(100% - 24px);
+  padding: 10px;
+  margin-bottom: 0;
+}
+.btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+.btn:hover {
+  background-color: #0056b3;
+}
+.alert {
+  padding: 15px;
+  margin-top: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 16px;
+}
+.alert-success,
+.alert-danger {
+  text-align: center;
+}
+.alert-success {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+.back-link {
+  display: block;
+  margin-top: 20px;
+  text-align: left;
 }

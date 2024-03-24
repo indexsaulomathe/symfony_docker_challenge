@@ -4,11 +4,15 @@
 
 {% block body %}
 <div class="container">
-    <h1>Cadastro de Novo Cidadão</h1>
+<div class="card">
+    <h1 style="text-align: center;">Cadastro de Novo Cidadão</h1>
 
-    {{ form_start(form) }}
+    {{ form_start(form, {'attr': {'class': 'form-group'}}) }}
         {{ form_row(form.name) }}
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <button type="submit" class="btn btn-primary mt-2" style="text-align: center;">Cadastrar</button>
     {{ form_end(form) }}
+
+    <a href="{{ path('app_citizen_search') }}"  class="back-link"  style="text-align: end;">Pesquisar Cidadão</a>
+</div>
 </div>
 {% endblock %}

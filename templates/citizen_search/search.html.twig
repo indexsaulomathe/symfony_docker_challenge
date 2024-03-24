@@ -1,21 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Resultados da Pesquisa{% endblock %}
+{% block title %}Pesquisa de Cidadão{% endblock %}
 
 {% block body %}
 <div class="container">
-    <h1>Resultados da Pesquisa</h1>
+    <div class="card">
+        <h1 style="text-align: center;">Pesquisa de Cidadão</h1>
+        {{ form_start(form, {'attr': {'class': 'form-group'}}) }}
+            <div style="text-align: center;">
+                {{ form_row(form.nis) }}
+            </div>
+        {{ form_end(form) }}
 
-    {% if citizens|length > 0 %}
-        <ul>
-            {% for citizen in citizens %}
-                <li>{{ citizen.name }} - NIS: {{ citizen.nis }}</li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>Nenhum cidadão encontrado.</p>
-    {% endif %}
-
-    <a href="{{ path('app_citizen') }}">Voltar à pesquisa</a>
+        {% if citizen %}
+            <div class="alert alert-success">
+                Cidadão encontrado: <strong>NOME:</strong> {{ citizen.name }}, <strong>NIS:</strong> {{ citizen.nis }}
+            </div>
+        {% elseif form.vars.submitted %}
+            <div class="alert alert-danger">
+                Cidadão não encontrado.
+            </div>
+        {% endif %}
+        <a href="{{ path('app_new_citizen') }}" class="back-link">Voltar para cadastro</a>
+    </div>
 </div>
 {% endblock %}

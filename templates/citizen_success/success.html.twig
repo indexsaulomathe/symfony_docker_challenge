@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Cidadão Cadastrado com Sucesso
+{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <div class="card">
+      <h1 style="text-align: center;">Cidadão Cadastrado com Sucesso</h1>
+      <div class="form-group">
+        <p>O NIS gerado para o cidadão <strong> {{ name }} </strong> é.</p>
+        <p>NIS: {{ nis }}</p>
+      </div>
+      <a href="{{ path('app_new_citizen') }}" class="back-link" style="text-align: end;">Cadastrar outro cidadão</a>
+    </div>
+  </div>
+{% endblock %}

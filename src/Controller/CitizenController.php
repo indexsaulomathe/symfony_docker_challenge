@@ -25,13 +25,25 @@ class CitizenController extends AbstractController
             $entityManager->persist($citizen);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Cidadão cadastrado com sucesso!');
+            $this->addFlash('success', 'Cidadão cadastrado com sucesso! NIS: ' . $citizen->getNis());
 
-            return $this->redirectToRoute('app_new_citizen');
+            return $this->redirectToRoute('citizen_success', [
+                'nis' => $citizen->getNis(),
+                'name' => $citizen->getName(),
+            ]);
         }
 
         return $this->render('citizen_new/new.html.twig', [
             'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/citizen/success/{nis}/{name}', name: 'citizen_success')]
+    public function success(string $nis, string $name): Response
+    {
+        return $this->render('citizen_success/success.html.twig', [
+            'nis' => $nis,
+            'name' => $name,
         ]);
     }
 }
