@@ -4,6 +4,7 @@ Este guia fornece instruções passo a passo para configurar e executar a aplica
 ## Pré-requisitos
 Antes de começar, certifique-se de ter instalado em sua máquina:
 
+php ^8.2
 Docker
 Docker Compose
 Você também precisará de conhecimentos básicos de Docker, Docker Compose e do framework Symfony.
@@ -14,8 +15,8 @@ Clonar o Repositório
 Primeiro, clone o repositório do projeto para a sua máquina local usando Git.
 
 ```bash
-git clone <URL_DO_REPOSITÓRIO>
-cd <DIRETÓRIO_DO_PROJETO>
+git clone <https://github.com/indexsaulomathe/symfony_docker_challenge.git>
+cd <symfony_docker_challenge>
 ```
 
 ## Configuração do Ambiente
@@ -29,9 +30,15 @@ POSTGRES_PASSWORD=senha
 ```
 Assegure-se de ajustar essas variáveis para refletir as configurações desejadas para o banco de dados PostgreSQL.
 
+## Realize a instalacao das dependencias com composer
+
+```bash
+composer install
+```
+
 ## Construção dos Containers Docker
 
-Dentro do diretório do projeto, execute o seguinte comando para construir e iniciar os containers:
+Com a Docker Instalada e On, dentro do diretório do projeto, execute o seguinte comando para construir e iniciar os containers:
 
 ```bash
 docker-compose up -d --build
@@ -39,9 +46,9 @@ docker-compose up -d --build
 
 Isso irá construir a imagem do projeto e iniciar os containers necessários (PHP-FPM, PostgreSQL e Nginx).
 
-## Instalação das Dependências do Projeto
+## Instalação das Dependências do Projeto dentro da docker
 
-Após os containers estarem em execução, instale as dependências do projeto executando:
+Após os containers estarem em execução, instale as dependências do projeto na docker executando:
 
 ``` bash
 docker-compose exec php composer install
@@ -54,12 +61,12 @@ Isso irá instalar todas as dependências do PHP necessárias para o projeto Sym
 Você pode precisar executar migrações para configurar seu banco de dados. Execute o seguinte comando para aplicar migrações:
 
 ```bash
-docker-compose exec php bin/console doctrine:migrations:migrate
+docker-compose exec php php bin/console doctrine:migrations:migrate 
 ```
 
 ## Acessando a Aplicação
 
-A aplicação agora estará acessível no navegador através do endereço http://localhost (ou a porta configurada, se você a alterou).
+A aplicação agora estará acessível no navegador através do endereço http://localhost:9000/ (ou a porta configurada, se você a alterou).
 
 ## Comandos Úteis
 
@@ -82,18 +89,17 @@ utilize
  docker-compose exec php bin/console <comando>
 ```
 
-
-
 ## Para roda os testes deve ser criado o banco de test em sqlite
 
 php bin/console doctrine:database:create --env=test
 php bin/console doctrine:schema:create --env=test
-php bin/console doctrine:migrations:migrate --env=test
-
 
 ## Rodar os testes
 
 ./vendor/bin/phpunit
+
+## Caso necessario execute migration
+php bin/console doctrine:migrations:migrate --env=test
 
 
 
