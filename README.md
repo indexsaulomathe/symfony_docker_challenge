@@ -2,6 +2,8 @@
 Este guia fornece instruções passo a passo para configurar e executar a aplicação Symfony com um banco de dados PostgreSQL, utilizando Docker. A aplicação é servida por PHP-FPM e utiliza o servidor web Nginx.
 
 ## Pré-requisitos
+Caso enfrente problemas de permissao do php, existe a copia do php.ini utilizada no projeto em ambiente windows, caso necessario utilizar a mesma. ou consultar as permissoes.
+
 Antes de começar, certifique-se de ter instalado em sua máquina:
 
 php ^8.2
